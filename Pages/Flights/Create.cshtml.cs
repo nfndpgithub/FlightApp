@@ -27,7 +27,11 @@ namespace vezba.Pages.Flights
                 flight.Date = Convert.ToDateTime(Request.Form["date"]);
                 flight.Stops = Convert.ToInt32(Request.Form["stops"]);
                 flight.Capacity = Convert.ToInt32(Request.Form["capacity"]);
-                
+                if(DateTime.Now.CompareTo(flight.Date) > 0)
+                {
+                    errorMessage = "Invalid date;";
+                    return;
+                }
             }
             else
             {errorMessage = "All fields are required.";
