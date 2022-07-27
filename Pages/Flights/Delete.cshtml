@@ -1,0 +1,34 @@
+﻿@page
+@using System.Data.SqlClient;
+@using CSCL;
+
+@{
+    try
+            {   
+                String id=Request.Query["id"];
+                ConnectionStringManager cs = new ConnectionStringManager();
+                var connectionString = cs.GetConnectionString();
+                
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    String sql = "delete from flights where id=@id";
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    {
+                        command.Parameters.AddWithValue("@id", id);
+                        command.ExecuteNonQuery();
+                        
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+               // errorMessage=ex.Message;
+                return;
+
+            }
+            Response.Redirect("/Flights/Index");
+}
+
+
+

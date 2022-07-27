@@ -1,0 +1,74 @@
+﻿@page
+@model vezba.Pages.Profile.IndexModel
+@{
+	ViewData["Title"] = "Profile";
+}
+
+@if(Model.errorMessage.Length>0 && Model.role=="posetilac"){
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		<strong>@Model.errorMessage</strong>
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+}
+<h1 class="p-2">Profile info</h1>
+		<div class="col-md-3">
+			<ul class="list-group">
+			  <li class="list-group-item " >Username: @Model.username</li>
+			  <li class="list-group-item text-info">Role: @Model.role</li>
+			  
+			</ul>
+		</div>
+
+		@if(Model.role=="posetilac"){
+
+
+	
+	<h2 class="bm-3 mt-4 pb-3">List of  booked flights</h2>
+<a class="btn btn-primary btn-sm" href="/Reservation/Index">Book a flight </a>
+
+<table class="table">
+	<thead>
+		<tr>
+
+			<th>From</th>
+			<th>To</th>
+			<th>Date and time</th>
+			<th>Number of seats</th>
+			<th>Status</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach(var item in Model.listFlights){
+				if (item.Status == "Declined")
+				{
+					<tr bgcolor="#f23841">
+
+						<td  id="ids" hidden >@item.Id</td>
+						<td>@item.From</td>
+						<td>@item.To</td>
+						<td>@item.Date</td>
+						<td>@item.Seats</td>
+						<td id="status" >@item.Status</td>
+					</tr>
+				}
+				else
+				{
+
+
+
+					<tr>
+
+						<td  id="ids" hidden >@item.Id</td>
+						<td>@item.From</td>
+						<td>@item.To</td>
+						<td>@item.Date</td>
+						<td>@item.Seats</td>
+						<td id="status" >@item.Status</td>
+					</tr>
+
+				}
+		}
+	</tbody>
+</table>
+		
+	}

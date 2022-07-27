@@ -1,0 +1,144 @@
+﻿@page
+@using Microsoft.AspNetCore.Http
+@model vezba.Pages.Reservation.ReservationModel
+@using vezba.Pages.Reservation;
+@{
+	
+}
+<h2 class="mb-4">Where are you flying?</h2>
+@if (Model.errorMessage.Length > 0)
+{
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		<strong>@Model.errorMessage</strong>
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+}
+@if(Model.successMessage.Length > 0){
+	<div class="alert alert-success alert-dismissible fade show" role="alert">
+		<strong>@Model.successMessage</strong>
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+}
+<form method="post" >
+	<div class="row mb-3 ">
+		<label class="col-sm-3 col-form-label">From</label>
+		<div class="col-sm-6">
+			<div class="input-group mb-0">
+			  <select  name="from" class="form-select " id="inputGroupSelect01">
+				<option selected="">Select city</option>
+				<option value="Beograd">Beograd</option>
+				<option value="Niš">Niš</option>
+				<option value="Kraljevo">Kraljevo</option>
+				<option value="Priština">Priština</option>
+			  </select>
+			</div>
+				</div>
+
+	</div>
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">To</label>
+		<div class="col-sm-6">
+			<div class="input-group mb-0">
+			  <select  name="to" class="form-select" id="inputGroupSelect01">
+				<option selected="">Select city</option>
+				<option value="Beograd">Beograd</option>
+				<option value="Niš">Niš</option>
+				<option value="Kraljevo">Kraljevo</option>
+				<option value="Priština">Priština</option>
+			  </select>
+			</div>
+
+		</div>
+
+	</div>
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">Date </label>
+		<div class="col-sm-6">
+			<input type="date" class="form-control" name="date" value="">
+
+		</div>
+
+	</div>
+	
+	
+	
+	<div class="row mb-3 m-lg-1" >
+		<div class="form-check">
+		  <input class="form-check-input" name="stops" type="checkbox" value="on" id="flexCheckDefault">
+		  <label class="form-check-label" for="flexCheckDefault">
+			Non-stop flights
+		  </label>
+		</div>
+		
+	</div>
+	<div class="row mb-3">
+		<div class="offset-sm-3 col-sm-3 d-grid">
+			<button type="submit" class="btn btn-primary">Submit</button>
+
+		</div>
+		<div class="col-sm-3 d-grid">
+			<a href="/Reservation/Index" class="btn btn-outline-primary" role="button">Cancel</a>
+
+		</div>
+
+	</div>
+	
+
+	
+	
+</form>
+
+
+<h2>List of flights</h2>
+<table class="table">
+	<thead>
+		<tr>
+			
+
+			<th>From</th>
+			<th>To</th>
+			<th>Date and time</th>
+			<th>Stops</th>
+			<th>Capacity</th> 
+			<th>Click to book your flight</th> 
+		</tr>
+	</thead>
+	<tbody>
+		@foreach(var item in Model.listFlights){
+			<tr >
+								
+
+								<td>@item.From</td>
+								<td>@item.To</td>
+								<td>@item.Date</td>
+								<td>@item.Stops</td>
+								<td>@item.Capacity</td>
+								<td>
+
+					@if(DateTime.Now.AddDays(3).CompareTo(item.Date) < 0 || item.Capacity==0)
+					{
+						<form method="post" asp-page-handler="Reserv">
+						<div class="input-group mb-3">
+							
+								<input type="text" hidden value="@item.Id" name="id">
+							<input type="number" class="form-control" name="seats" value="" placeholder="How many seats do you need?">
+							<button  type="submit" class="btn btn-primary btn-sm mx-3" id="test" role="button"  >Book a flight     </button>
+						</div>
+						</form>
+						
+							
+
+						
+						
+					}
+					
+					
+					
+								</td>
+				</tr>
+				
+			}
+
+		
+	</tbody>
+</table>

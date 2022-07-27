@@ -1,0 +1,11 @@
+﻿@page
+@{
+	try{
+		HttpContext.Session.SetString("username", "");
+		HttpContext.Session.SetString("role", "");
+		Response.Redirect("/Index");
+	}catch(Exception ex)
+	{
+		
+	}
+}

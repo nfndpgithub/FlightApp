@@ -1,0 +1,95 @@
+﻿@page
+@model vezba.Pages.Flights.EditModel
+@{ ViewData["Title"] = "Edit flight";
+}
+<h2>Edit flight</h2>
+@if (Model.errorMessage.Length > 0)
+{
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		<strong>@Model.errorMessage</strong>
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+}
+<form method="post">
+	<input type="hidden" name="id" value="@Model.flight.Id ">
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">From</label>
+		<div class="col-sm-6">
+			<div class="input-group mb-0">
+			  <select  name="from" class="form-select show-tick" id="inputGroupSelect01" value="@Model.flight.From">
+				<option selected="@Model.flight.From">@Model.flight.From</option>
+				<option value="Beograd">Beograd</option>
+				<option value="Niš">Niš</option>
+				<option value="Kraljevo">Kraljevo</option>
+				<option value="Priština">Priština</option>
+			  </select>
+			</div>
+		</div>
+
+	</div>
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">To</label>
+		<div class="col-sm-6">
+			<div class="input-group mb-0">
+			  <select  name="to" class="form-select show-tick" id="inputGroupSelect01" value="@Model.flight.To">
+				<option selected="@Model.flight.To">@Model.flight.To</option>
+				<option value="Beograd">Beograd</option>
+				<option value="Niš">Niš</option>
+				<option value="Kraljevo">Kraljevo</option>
+				<option value="Priština">Priština</option>
+			  </select>
+			</div>
+
+		</div>
+
+	</div>
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">Date and time</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" name="date" value="@Model.flight.Date">
+
+
+		</div>
+
+	</div>
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">stops</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" name="stops" value="@Model.flight.Stops">
+
+		</div>
+
+	</div>
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">Capacity</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" name="capacity" value="@Model.flight.Capacity">
+
+		</div>
+
+	</div>
+	@if (Model.successMessage.Length > 0) {
+			<div class="row mb-3">
+			
+
+				<div class="col-sm-9">
+				<div class='alert alert-success alert-dismissible fade show' role='alert'>
+				<strong>@Model.successMessage</strong>
+					<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+				</div>
+				</div>
+				</div>
+}
+	
+	<div class="row mb-3">
+		<div class="offset-sm-3 col-sm-3 d-grid">
+			<button type="submit" class="btn btn-primary">Submit</button>
+
+		</div>
+		<div class="col-sm-3 d-grid">
+			<a href="/Flights" class="btn btn-outline-primary" role="button">Cancel</a>
+
+		</div>
+
+	</div>
+</form>

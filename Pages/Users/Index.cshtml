@@ -1,0 +1,34 @@
+﻿@page
+@model vezba.Pages.Users.IndexModel
+@{
+	ViewData["Title"] = "Users";
+}
+<h2>List of users</h2>
+<a class="btn btn-primary btn-sm" href="/Users/Create">Add user</a>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Id</th>
+
+			<th>Name</th>
+			<th>Password</th>
+			<th>Role</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach(var item in Model.listUsers){
+			<tr>
+				<td>@item.id</td>
+
+				<td>@item.name</td>
+				<td>@item.password</td>
+				<td>@item.role</td>
+				<td>
+					<a class="btn btn-primary btn-sm" href="/Users/Edit?id=@item.id">Edit</a>
+					<a class="btn btn-danger btn-sm" href="/Users/Delete?id=@item.id">Delete</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

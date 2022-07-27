@@ -1,0 +1,56 @@
+﻿@page
+@model vezba.Pages.Flights.IndexModel
+@{
+	ViewData["Title"] = "Flights";
+}
+<h2>List of flights</h2>
+<a class="btn btn-primary btn-sm" href="/Flights/Create">Add flight</a>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>From</th>
+			<th>To</th>
+			<th>Date and time</th>
+			<th>Stops</th>
+			<th>Capacity</th> 
+		</tr>
+	</thead>
+	<tbody>
+		@foreach(var item in Model.listFlights){
+			if(@item.Capacity<5){
+				<tr bgcolor="#f23841">
+								<td>@item.Id</td>
+
+								<td>@item.From</td>
+								<td>@item.To</td>
+								<td>@item.Date</td>
+								<td>@item.Stops</td>
+								<td>@item.Capacity</td>
+								<td>
+									<a class="btn btn-primary btn-sm" href="/Flights/Edit?id=@item.Id">Edit</a>
+									<a class="btn btn-danger btn-sm" href="/Flights/Delete?id=@item.Id">Delete</a>
+								</td>
+				</tr>
+			}else
+
+			{<tr >
+								<td>@item.Id</td>
+
+								<td>@item.From</td>
+								<td>@item.To</td>
+								<td>@item.Date</td>
+								<td>@item.Stops</td>
+								<td>@item.Capacity</td>
+								<td>
+									<a class="btn btn-primary btn-sm" href="/Flights/Edit?id=@item.Id">Edit</a>
+									<a class="btn btn-danger btn-sm" href="/Flights/Delete?id=@item.Id">Delete</a>
+								</td>
+				</tr>
+				
+			}
+
+		}
+	</tbody>
+</table>
