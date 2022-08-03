@@ -83,6 +83,7 @@ namespace vezba.Pages.Reservation
             string seats= Request.Form["seats"];
             string remainingSeats = "";
               bool answer=false;
+            string flightId = "";
 
             try
             {
@@ -106,7 +107,7 @@ namespace vezba.Pages.Reservation
                         while (dr.Read())
                         {
                             remainingSeats = dr.GetValue(8).ToString();
-                            
+                            flightId = dr.GetValue(5).ToString(); 
 
                         }
                         
@@ -127,6 +128,8 @@ namespace vezba.Pages.Reservation
                     cmd = new SqlCommand("update reservations set status='Accepted', remainingSeats ='"+newRemaingingSeats+"' where id='"+id+"'", connection);
                     dr = cmd.ExecuteReader();
                     dr.Close();
+                    cmd = new SqlCommand("update flights set capacity='"+ newRemaingingSeats +"'  where id='" + flightId + "'", connection);
+                    dr = cmd.ExecuteReader();
                     answer = true;
                     await _hubContext.Clients.All.SendAsync("Answer", id, answer);
 
@@ -141,17 +144,6 @@ namespace vezba.Pages.Reservation
                     await _hubContext.Clients.All.SendAsync("Answer", id, answer);
 
                 }
-
-
-                
-                
-
-           
-            
-
-
-
-
 
 
 

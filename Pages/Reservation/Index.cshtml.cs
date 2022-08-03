@@ -76,11 +76,7 @@ namespace vezba.Pages.Reservation
             {
                 date = Convert.ToDateTime(Request.Form["date"]).Date.ToString("d");
             }
-            else
-            {
-                errorMessage = "You have to fill all fields!";
-                return;
-            }
+            
 
 
             bool non_stop;
@@ -92,8 +88,32 @@ namespace vezba.Pages.Reservation
             OnGet();
             foreach (Flight flight in listFlights)
             {
-                if (flight.From == from && flight.To == to && flight.Date.Date.ToString("d") == date )
+                if (date == "")
                 {
+                    if (flight.From == from && flight.To == to )
+                    {
+
+                        if (non_stop)
+                        {
+                            if (flight.Stops != 0)
+                            {
+
+
+                                continue;
+                            }
+                        }
+                        subListFlights.Add(flight);
+
+                    }
+
+                }
+                else
+                {
+
+                
+                if (flight.From == from && flight.To == to && flight.Date.Date.ToString("d") == date)
+                {
+
                     if (non_stop)
                     {
                         if (flight.Stops != 0)
@@ -106,6 +126,7 @@ namespace vezba.Pages.Reservation
                     subListFlights.Add(flight);
 
                 }
+            }
             }
 
 

@@ -29,33 +29,35 @@ else
 		</tr>
 	</thead>
 	<tbody id="logBody">
-			<form method="post" asp-page-handler="Answer"> 
+			
 				
 				@foreach(var item in Model.listFlights){
-				if (item.Capacity < 5)
-				{
-					<tr bgcolor="#d96f7b"  >
-						<td>@item.Username</td>
-						<td>@item.From</td>
-						<td>@item.To</td>
-						<td>@item.Date</td>
-						<td>@item.Capacity</td>
-						<td>@item.Seats</td>
-						<td>@item.Status</td>
-						@if (item.Status == "Pending")
-						{
-							
-							<td>
-								<input type="text" hidden value="@item.Id" name="id">
-								<input type="text" hidden value="@item.Seats" name="seats">
-								<button type="submit" class="btn btn-success" value="accept" name="accept"> Accept</button>
-								<button type="submit" class="btn btn-danger" value="decline" name="decline"> Decline</button>
-							</td>
+				
+					if (item.Capacity < 5)
+					{
+						<tr bgcolor="#d96f7b"  >
+							<td>@item.Username</td>
+							<td>@item.From</td>
+							<td>@item.To</td>
+							<td>@item.Date</td>
+							<td>@item.Capacity</td>
+							<td>@item.Seats</td>
+							<td>@item.Status</td>
+							@if (item.Status == "Pending")
+							{
+							<form method="post" asp-page-handler="Answer"> 
+								<td>
+									<input type="text" hidden value="@item.Id" name="id">
+									<input type="text" hidden value="@item.Seats" name="seats">
+									<button type="submit" class="btn btn-success" value="accept" name="accept"> Accept</button>
+									<button type="submit" class="btn btn-danger" value="decline" name="decline"> Decline</button>
+								</td>
+							</form>
 						
-						}
+							}
 
-					</tr>
-				}
+						</tr>
+					}
 				else
 				{
 					<tr  >
@@ -68,12 +70,14 @@ else
 						<td>@item.Status</td>
 						@if (item.Status == "Pending")
 						{
+							<form method="post" asp-page-handler="Answer"> 
 							<td>
 								<input type="text" hidden value="@item.Id" name="id">
 								<input type="text" hidden value="@item.Seats" name="seats">
 								<button type="submit" class="btn btn-success" value="accept" name="accept"> Accept</button>
 								<button type="submit" class="btn btn-danger" value="decline" name="decline"> Decline</button>
 							</td>
+							</form>
 						
 							
 						}
@@ -84,9 +88,9 @@ else
 					
 
 			
-
+			
 		}
-		</form>
+		
 	</tbody>
 	
 </table>

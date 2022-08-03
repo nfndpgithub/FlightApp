@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fligthApp", "fligthApp.csproj", "{E8E38B9A-CAB3-4B33-A580-84967088CCE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "flightApp", "flightApp.csproj", "{E8E38B9A-CAB3-4B33-A580-84967088CCE5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSCL", "..\CSCL\CSCL.csproj", "{535707EE-D882-43B7-982B-511A81CFA13A}"
 EndProject

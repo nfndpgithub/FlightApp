@@ -41,14 +41,14 @@
 		@foreach(var item in Model.listFlights){
 				if (item.Status == "Declined")
 				{
-					<tr bgcolor="#f23841">
+					<tr bgcolor="#f23841" id="@item.Id+2">
 
 						<td  id="ids" hidden >@item.Id</td>
 						<td>@item.From</td>
 						<td>@item.To</td>
-						<td>@item.Date</td>
-						<td>@item.Seats</td>
-						<td id="status" >@item.Status</td>
+						<td >@item.Date</td>
+						<td >@item.Seats</td>
+						<td id=@item.Id  >@item.Status</td>
 					</tr>
 				}
 				else
@@ -56,14 +56,14 @@
 
 
 
-					<tr>
+					<tr id="@item.Id+2">
 
-						<td  id="ids" hidden >@item.Id</td>
+						<td   hidden >@item.Id</td>
 						<td>@item.From</td>
 						<td>@item.To</td>
 						<td>@item.Date</td>
 						<td>@item.Seats</td>
-						<td id="status" >@item.Status</td>
+						<td id=@item.Id >@item.Status</td>
 					</tr>
 
 				}
